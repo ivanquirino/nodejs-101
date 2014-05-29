@@ -1,1 +1,42 @@
-Hello World!
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="author" content="Ivan Quirino"><meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="stylesheet" href="css/reveal.min.css"><link id="theme" rel="stylesheet" href="css/theme/night.css"><!-- For syntax highlighting--><link rel="stylesheet" href="lib/css/zenburn.css"><!-- If the query includes 'print-pdf', include the PDF print sheet--><script>if( window.location.search.match( /print-pdf/gi ) ) {
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = 'css/print/pdf.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+}
+</script><!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]--><title>Node.js 101: Entendo o Hype</title></head><body><div class="reveal"><div class="slides"><section><h1>Node.js 101</h1><h2>Entendendo o Hype</h2><img src="img/logo.png" style="background-color: white"/></section><section><h2>Ivan Quirino</h2><ul><li>Lead Developer Yupi Studios</li><li>Cursando pós em Engenharia de Software - Estácio</li><li>Tecnólogo em Redes de Computadores - IFPB</li></ul><h3 style="margin-top: 3rem">Yupi Studios</h3><p>Aplicativos, jogos e soluções inovadoras para as principais plataformas no mercado móvel: iOS, Android e Windows Phone/Windows8</p></section><section><h2>O que é Node.js?</h2><h3>Javascript</h3><h3>Assíncrono</h3><h3>I/O sem bloqueio</h3><h3>Escalável</h3><h3>Baixo nível</h3><h3>Única Thread</h3><blockquote>Plataforma para construir aplicações de rede rápidas e escaláveis de maneira fácil</blockquote></section><section><h2>APIs do Node.js</h2><h3>HTTP e HTTPS</h3><h3>TCP e UDP</h3><h3>Sistema de Arquivos</h3><h3>Cluster</h3><h3>Processos</h3></section><section><h2>Por que tanta pressa?</h2><h3>Google Chrome V8</h3><ul><li>Compilação JIT para código de máquina</li></ul><h3 style="margin-top: 2rem">libuv</h3><ul><li>Entrada / Saída assíncrona</li></ul></section><section><h2>O problema C10K</h2><h3>Como conseguir 10k conexões simulâneas?</h3><p>Os modelos clássicos de concorrência não atingem a escala Web</p></section><section><h3>Apache + módulo PHP: fork()</h3><img src="img/fork.png" style="width: 90%"/></section><section><h3>Apache + FCGI: pthread_create()</h3><img src="img/pthread_create.png" style="width: 90%"/></section><section><h2>Eventos!</h2><p>O sistemas operacionais implementaram sistemas de notificação de entrada e saída</p><ul><li>Linux: epoll</li><li>Windows: IOCP</li><li>FreeBSD: kqueue</li><li>POSIX: select</li></ul><h3 style="margin-top: 3rem">Abstração: libuv</h3></section><section><h2>Eventos!</h2><img src="img/events.png" style="width: 90%"/></section><section><h2>Exemplo</h2><pre><code>var http = require('http');
+
+http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello World\n');
+}).listen(1337, '127.0.0.1');
+
+console.log('Server running at http://127.0.0.1:1337/');
+</code></pre></section><section><h2>Módulos</h2><ul style="display: block"><li>NPM</li></ul><ul style="display: block"><li>Express.js, Sails.js etc</li></ul><ul style="display: block"><li>forms</li></ul><ul style="display: block"><li>LESS, Sass, Stylus</li></ul><ul style="display: block"><li>Jade, Handlebars, ejs, hogan.js etc</li></ul><ul style="display: block"><li>Socket.io, request etc</li></ul><ul style="display: block"><li>MySQL, PostgreSQL, MongoDB, Redis, Apache Cassandra etc.</li></ul><ul style="display: block"><li>forms etc</li></ul><ul style="display: block"><li>e muito mais!</li></ul></section><section><h2>Vantagens e desvantagens</h2><div><ul><li>Produtivo usar Javascript no lado do servidor</li><li>Muitas ferramentas</li><li>Controle total sobre seu servidor</li></ul></div><div><ul><li>Frameworks não tão completos como em outras linguagens</li><li>Documentação insuficiente de alguns módulos</li><li>Poucas hospedagens dão suporte (Nodejitsu, Heroku etc)</li></ul></div></section><section><h2>Eventos em outras linguagens</h2><ul><li>PHP: React</li><li>Python: Twisted</li><li>Ruby: EventMachine</li><li>Java: Netty</li><li>D: Vibe.d</li></ul></section><section><h1>Obrigado!</h1><h2><a href="http://ivanquirino.github.io/nodejs-101/">http://ivanquirino.github.io/nodejs-101/</a></h2></section></div></div><script src="lib/js/head.min.js"></script><script src="js/reveal.min.js"></script><script>// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+
+Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: 'linear',
+    
+    // Parallax scrolling
+    // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    // parallaxBackgroundSize: '2100px 900px',
+    // Optional libraries used to extend on reveal.js
+    
+dependencies: [
+        { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+]
+});</script></body></html>
